@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vistemu — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="brand">
+      <span class="brand-icon">📱</span>
+      <h1>Vistemu settings</h1>
+    </div>
+
+    <section>
+      <h2>Site access</h2>
+      <p>
+        The emulator loads pages you enter into an iframe and overrides their
+        User-Agent, platform and touch behavior. That requires permission to
+        read/script the sites you choose to test — it is <strong>not</strong>
+        granted automatically.
+      </p>
+      <p>Status: <span id="permission-status">checking…</span></p>
+      <button id="grant-permission">Enable testing on any site</button>
+      <button id="revoke-permission" class="secondary">Revoke access</button>
+    </section>
+
+    <section>
+      <h2>Local Android bridge pairing</h2>
+      <p>The bridge requires this pairing token before it accepts device commands. On Windows, copy it from <code>%APPDATA%\Vistemu\bridge-token.txt</code>. Keep the token private; it grants control of connected Android devices.</p>
+      <label class="full">
+        Pairing token
+        <input id="bridge-token" type="password" autocomplete="off" spellcheck="false" placeholder="Paste the token from the bridge app" />
+      </label>
+      <p>Status: <span id="bridge-token-status">Not paired</span></p>
+      <button id="save-bridge-token">Save pairing</button>
+      <button id="clear-bridge-token" class="secondary">Remove pairing</button>
+    </section>
+
+    <section>
+      <h2>Custom devices</h2>
+      <form id="device-form">
+        <div class="grid">
+          <label>Name <input name="name" required /></label>
+          <label>Category
+            <select name="category">
+              <option value="phone">Phone</option>
+              <option value="tablet">Tablet</option>
+              <option value="ipad">iPad</option>
+              <option value="foldable">Foldable</option>
+              <option value="desktop">Desktop</option>
+            </select>
+          </label>
+          <label>OS
+            <select name="os">
+              <option value="android">Android</option>
+              <option value="ios">iOS</option>
+              <option value="ipados">iPadOS</option>
+              <option value="windows">Windows</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Width (px) <input name="width" type="number" min="100" max="4000" required /></label>
+          <label>Height (px) <input name="height" type="number" min="100" max="4000" required /></label>
+          <label>Pixel ratio <input name="dpr" type="number" min="1" max="6" step="0.125" value="2" required /></label>
+          <label>Platform string <input name="platform" value="Linux armv8l" required /></label>
+          <label class="checkbox"><input name="touch" type="checkbox" checked /> Touch capable</label>
+          <label>Max touch points <input name="maxTouchPoints" type="number" min="0" max="10" value="5" /></label>
+        </div>
+        <label class="full">User-Agent string
+          <input name="userAgent" required />
+        </label>
+        <button type="submit">Add device</button>
+        <p id="form-error" class="error" hidden></p>
+      </form>
+
+      <ul id="custom-device-list"></ul>
+    </section>
+
+    <section>
+      <h2>Remote device farm (optional, advanced)</h2>
+      <p>
+        This extension cannot run real Android/iOS binaries by itself — a browser
+        extension sandbox has no OS virtualization. If you already operate (or
+        subscribe to) a device-farm/emulator-streaming service that exposes a
+        browser-embeddable URL (e.g. a self-hosted Android emulator over noVNC/WebRTC),
+        you can store its URL template here and open it from the emulator toolbar.
+      </p>
+      <label class="full">
+        Device-farm URL template
+        <input id="remote-farm-url" placeholder="https://your-device-farm.example/session?device={deviceId}" />
+      </label>
+      <button id="save-remote-farm">Save</button>
+    </section>
+
+    <footer class="app-footer">
+      <p>&copy; <span id="footer-year"></span> Powered by autom8 Inc&reg;</p>
+      <p><a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy policy</a></p>
+    </footer>
+
+    <script src="options.js"></script>
+  </body>
+</html>

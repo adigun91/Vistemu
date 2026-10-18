@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vistemu</title>
+    <link rel="stylesheet" href="emulator.css" />
+  </head>
+  <body>
+    <div class="columns-row">
+      <section id="viewport-mode" class="column">
+        <h2 class="column-title">Viewport Emulation</h2>
+
+        <div id="permission-banner" class="banner" hidden>
+          <span>
+            To load arbitrary sites inside the emulator (and spoof their User-Agent/touch
+            behavior), grant this extension access to all sites.
+          </span>
+          <div class="banner-actions">
+            <button id="grant-permission">Enable testing on any site</button>
+            <button id="dismiss-banner" class="secondary">Dismiss</button>
+          </div>
+        </div>
+
+        <div class="panel-row">
+          <aside class="sidebar">
+            <form id="url-form" class="url-form">
+              <input id="url-input" type="text" placeholder="https://localhost:3000" autocomplete="off" />
+              <button type="submit">Go</button>
+            </form>
+
+            <label class="field">
+              Device
+              <select id="device-select"></select>
+            </label>
+
+            <button id="orientation-toggle" title="Rotate device">⟳ Rotate</button>
+
+            <label class="field">
+              Zoom
+              <input id="zoom-range" type="range" min="0.25" max="1.5" step="0.05" value="0.9" />
+            </label>
+
+            <label class="field checkbox">
+              <input id="bezel-toggle" type="checkbox" checked />
+              Bezel
+            </label>
+
+            <a id="options-link" href="options.html" target="_blank">Manage devices…</a>
+            <button id="open-device-farm" type="button" class="secondary">Open in device farm…</button>
+          </aside>
+
+          <main id="stage" class="stage">
+            <div id="device-wrapper" class="device-wrapper">
+              <div id="device-bezel" class="device-bezel">
+                <div id="notch" class="notch"></div>
+                <iframe id="viewport-frame" title="Emulated viewport"></iframe>
+              </div>
+            </div>
+          </main>
+        </div>
+      </section>
+
+      <section id="device-mode" class="column">
+        <h2 class="column-title">Real APK Device</h2>
+
+        <div class="panel-row">
+          <aside class="sidebar">
+            <span id="bridge-status" class="status is-connecting">Bridge: connecting…</span>
+
+            <label class="field">
+              Phone
+              <select id="rd-device-select"><option value="">No device</option></select>
+            </label>
+            <button id="rd-refresh" type="button">Refresh</button>
+
+            <input id="rd-apk-input" type="file" accept=".apk" />
+            <button id="rd-install" type="button">Install &amp; Launch</button>
+
+            <label class="field">
+              Installed
+              <select id="rd-package-select"><option value="">—</option></select>
+            </label>
+            <button id="rd-launch" type="button">Launch</button>
+            <button id="rd-uninstall" type="button" class="danger">Uninstall</button>
+
+            <hr class="sidebar-divider" />
+
+            <label class="field">
+              Local emulator (runs on this PC, not your phone)
+              <select id="rd-emulator-preset">
+                <option value="">Custom…</option>
+                <option value="127.0.0.1:5555">BlueStacks 5 (127.0.0.1:5555)</option>
+                <option value="127.0.0.1:5555">LDPlayer (127.0.0.1:5555)</option>
+                <option value="127.0.0.1:62001">NoxPlayer (127.0.0.1:62001)</option>
+                <option value="127.0.0.1:21503">MEmu (127.0.0.1:21503)</option>
+                <option value="127.0.0.1:58526">Windows Subsystem for Android (127.0.0.1:58526)</option>
+              </select>
+            </label>
+            <ul id="rd-emulator-status" class="emulator-status-list"></ul>
+            <input id="rd-emulator-hostport" type="text" placeholder="127.0.0.1:5555" autocomplete="off" />
+            <button id="rd-emulator-connect" type="button">Connect</button>
+            <button id="rd-emulator-disconnect" type="button" class="secondary">Disconnect</button>
+
+            <hr class="sidebar-divider" />
+
+            <div class="rd-nav-buttons">
+              <button id="rd-back" type="button">◁ Back</button>
+              <button id="rd-home" type="button">○ Home</button>
+              <button id="rd-recents" type="button">▢ Recents</button>
+            </div>
+            <form id="rd-text-form" class="rd-text-form">
+              <input id="rd-text-input" type="text" placeholder="Text to type…" autocomplete="off" />
+              <button type="submit">Send text</button>
+            </form>
+          </aside>
+
+          <main class="stage">
+            <p id="rd-canvas-empty" class="stage-empty">
+              <span class="stage-empty-icon">📱</span>
+              Connect a phone or local emulator to see its screen here
+            </p>
+            <canvas id="rd-canvas" class="rd-canvas"></canvas>
+          </main>
+        </div>
+
+        <p class="hint">
+          Mirrors and controls either your own USB-connected Android phone, <strong>or</strong> a
+          free local Android emulator app running on this PC (BlueStacks, LDPlayer, NoxPlayer,
+          MEmu, Windows Subsystem for Android) — pick a preset above (or type its
+          <code>host:port</code>) and click Connect; it then appears in the "Phone" dropdown like
+          any other device. Everything goes through <code>adb</code> via a local bridge at
+          <code>ws://127.0.0.1:8787</code> — nothing leaves your machine, no Android Studio, no
+          cloud account. One-time setup: in the <code>bridge/</code> folder of this project run
+          <code>npm install &amp;&amp; npm run setup</code>, then keep <code>npm start</code>
+          running.
+        </p>
+      </section>
+    </div>
+
+    <div id="toast-stack" class="toast-stack"></div>
+
+    <footer class="app-footer">
+      <p>&copy; <span id="footer-year"></span> Powered by autom8 Inc&reg;</p>
+    </footer>
+
+    <script src="emulator.js"></script>
+  </body>
+</html>

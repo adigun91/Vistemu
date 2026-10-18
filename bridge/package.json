@@ -1,0 +1,17 @@
+{
+  "name": "vistemu-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Vistemu local Android companion: installs, launches and mirrors APKs through paired loopback ADB. No cloud service or API keys.",
+  "scripts": {
+    "setup": "node scripts/setup-platform-tools.mjs",
+    "start": "node src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "package:windows": "node scripts/package-windows.mjs"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.1",
+    "ws": "^8.18.0"
+  }
+}

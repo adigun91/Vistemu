@@ -1,0 +1,27 @@
+{
+  "name": "vistemu-extension",
+  "version": "1.0.0",
+  "description": "Cross-browser mobile viewport testing and Android APK companion extension.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build/esbuild.config.mjs",
+    "build:chrome": "node build/esbuild.config.mjs --browser=chrome",
+    "build:firefox": "node build/esbuild.config.mjs --browser=firefox",
+    "watch": "node build/esbuild.config.mjs --watch",
+    "icons": "node build/make-icons.mjs",
+    "zip": "node build/zip.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@types/firefox-webext-browser": "^120.0.4",
+    "@types/webextension-polyfill": "^0.12.6",
+    "archiver": "^7.0.1",
+    "esbuild": "^0.25.12",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "webextension-polyfill": "^0.12.0"
+  }
+}

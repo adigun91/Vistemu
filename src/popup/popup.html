@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vistemu</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="brand">
+      <span class="brand-icon">📱</span>
+      <h1>Vistemu</h1>
+    </div>
+    <form id="launch-form">
+      <label class="field-label">
+        URL
+        <input id="url-input" type="text" placeholder="https://localhost:3000" autocomplete="off" />
+      </label>
+      <label class="field-label">
+        Device
+        <select id="device-select"></select>
+      </label>
+      <button type="submit">Open emulator</button>
+    </form>
+    <a id="options-link" href="options.html" target="_blank">Manage custom devices</a>
+    <footer class="app-footer">
+      <p>&copy; <span id="footer-year"></span> Powered by autom8 Inc&reg;</p>
+    </footer>
+    <script src="popup.js"></script>
+  </body>
+</html>

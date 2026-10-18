@@ -1,0 +1,26 @@
+VISTEMU STORE LISTING
+====================
+
+Name
+Vistemu — Mobile Web & APK Testing
+
+Short description
+Test mobile websites and PWAs across viewports; optionally install and control Android APKs using a local bridge.
+
+Long description
+Vistemu helps developers test responsive mobile websites and PWAs without leaving their desktop browser. Choose from phone, tablet, iPad, foldable, and desktop viewport profiles; rotate the device, adjust zoom, and test touch-oriented interactions.
+
+For native Android APK testing, install the separate Vistemu Bridge companion. The paired bridge runs locally on your Windows PC and uses Android Debug Bridge (ADB) to install, launch, mirror, and control an Android phone connected by USB or a separately installed local Android emulator. The bridge is optional; viewport emulation works without it.
+
+Privacy summary
+No Vistemu-hosted backend, analytics, advertising trackers, accounts, or cloud synchronization. Test pages load in the extension's preview iframe. Broad website access is optional and requested only after the user clicks the permission control. APK transfers, screenshots, and device-control commands are handled by the paired local bridge and ADB; they are not sent to Autom8 servers. See the hosted Privacy Policy for complete details.
+
+Limitations
+Vistemu's native APK bridge supports Android only. It does not run native iOS or Windows Phone apps. The viewport profiles test web layouts and are not OS emulators. Sites that disallow iframe embedding may refuse to load.
+
+Store screenshot checklist (capture from the installed extension, not file://)
+1. Main emulator page showing the two modes and phone viewport preview.
+2. Device profile selection, rotation, and manual zoom controls.
+3. Real APK Device controls beside the connected device screen.
+4. Settings page showing optional site permissions and local bridge pairing.
+5. Narrow-window layout showing responsive stacking.

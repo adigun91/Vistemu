@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vistemu Privacy Policy</title>
+    <style>
+      :root { color-scheme: light; font-family: Segoe UI, Arial, sans-serif; color: #17202a; background: #f5f8fa; }
+      body { max-width: 760px; margin: 0 auto; padding: 40px 22px; line-height: 1.6; }
+      h1, h2 { line-height: 1.2; }
+      h1 { font-size: 2rem; }
+      h2 { margin-top: 2rem; font-size: 1.2rem; }
+      p, li { color: #344054; }
+      code { overflow-wrap: anywhere; }
+      footer { margin-top: 3rem; border-top: 1px solid #d0d5dd; padding-top: 1rem; color: #667085; font-size: .9rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Vistemu Privacy Policy</h1>
+      <p><strong>Effective date:</strong> October 18, 2026</p>
+      <p>Vistemu is a browser extension for mobile viewport testing with an optional local companion bridge for installing and controlling Android APKs on a device you select. Vistemu is published by Autom8 Inc.</p>
+
+      <h2>Information Vistemu handles</h2>
+      <ul>
+        <li><strong>Extension settings stored locally:</strong> last-used test URL, custom device profiles, dismissed permission-banner state, optional device-farm URL template, and the local bridge pairing token. These values are stored in the browser's local extension storage; Vistemu does not send them to an Autom8 server.</li>
+        <li><strong>Website access:</strong> when you enter a URL and explicitly grant optional site access, the extension loads that site in its preview iframe and injects viewport, user-agent, and touch emulation. The extension does not proxy the site's traffic through an Autom8 server. Websites retain their normal ability to collect information under their own policies.</li>
+        <li><strong>Android bridge data:</strong> when you choose APK testing, the local bridge receives the APK file, sends it to the selected Android device using ADB, sends control commands, and returns device screenshots to the extension. The bridge binds to <code>127.0.0.1</code> and does not upload APKs or screenshots to Autom8.</li>
+        <li><strong>Pairing secret:</strong> the bridge creates a random pairing token in <code>%APPDATA%\Vistemu\bridge-token.txt</code> on Windows. The extension stores the token in browser extension storage after you paste it into Settings. Anyone with access to the token can control devices through the local bridge, so keep it private.</li>
+        <li><strong>Emulator detection:</strong> on Windows, the bridge reads installed-program display names and the Windows Subsystem for Android package state to show local emulator install statuses. It does not transmit this list.</li>
+      </ul>
+
+      <h2>Information we do not collect</h2>
+      <p>Vistemu does not include analytics, advertising trackers, user accounts, cloud synchronization, or an Autom8-hosted backend. We do not collect test URLs, APK contents, screenshots, device identifiers, or usage data. Browser extension stores may collect information according to their own policies.</p>
+
+      <h2>Permissions</h2>
+      <p>The extension requests browser storage and scripting capabilities needed for local settings and viewport emulation. Access to all websites is declared optional and requested only after you click the enable-testing control. You can revoke that access in Vistemu Settings or your browser's extension settings.</p>
+
+      <h2>Third-party software and services</h2>
+      <p>The optional bridge uses Google's Android Debug Bridge (ADB) Platform-Tools locally. The extension can open official emulator download pages at your request. A user-configured device-farm URL, if used, is operated by its owner and governed by that service's privacy policy.</p>
+
+      <h2>Data retention and deletion</h2>
+      <p>Extension settings remain in browser extension storage until you remove them or uninstall the extension. Remove custom devices and the saved device-farm URL in Settings; remove pairing by clearing the pairing token there. Delete the bridge token file and uninstall the local bridge to remove the bridge-side pairing secret. Temporary APK files are deleted after installation attempts.</p>
+
+      <h2>Children and contact</h2>
+      <p>Vistemu is a developer testing tool and is not designed for children. For privacy questions, contact Autom8 Inc through the publisher contact address shown on the extension store listing.</p>
+    </main>
+    <footer>© 2026 Powered by autom8 Inc®</footer>
+  </body>
+</html>
